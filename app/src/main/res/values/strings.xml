@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Freestyle Hero</string>
+    <string name="edit_message">Enter a message</string>
+    <string name="button_send">Send</string>
+    <string name="button_play">play</string>
+    <string name="music_button">Music options</string>
+    <string name="button_stop">Stop</string>
+    <string name="title_in_game_screen">In-game Screen</string>
+    <string name="button_easy">EASY</string>
+    <string name="button_hard">HARD</string>
+    <string name="name_freestyle">FREESTYLE</string>
+    <string name="name_hero">HERO</string>
+</resources>
