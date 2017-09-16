@@ -1,6 +1,6 @@
 # Freestyle Hero
 
-Freestyle Hero is an app on which you can test your freestyle rap skills. Every few seconds a new word would appear on screen, and you would have to try to incorporate that word into your rap. You can set a beat to rap to, toggle bewteen easy and hard words, and choose the rate at which new words appear.
+Freestyle Hero is an app on which you can test your freestyle rap skills. Every few seconds a new word would appear on screen, and you are to incorporate that word into your rap. You can set a beat to rap to, toggle bewteen easy and hard words, and choose the rate at which new words appear.
 
 ## Android Version Targeting
 
