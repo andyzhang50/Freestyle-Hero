@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.andy.freestylehero.MainActivity"
-    android:background="@drawable/background"
-    >
+    android:background="@drawable/background">
 
     <TextView
         android:id="@+id/freestyleTextView"
@@ -51,17 +50,15 @@
         android:layout_marginRight="0dp"
         android:layout_marginEnd="0dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@+id/heroTextView"
-        app:layout_constraintHorizontal_bias="0.502" />
+        app:layout_constraintHorizontal_bias="0.503"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/musicToggleButtonMain" />
 
     <ToggleButton
         android:id="@+id/musicToggleButtonMain"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:checked="true"
-        app:layout_constraintTop_toBottomOf="@+id/playButton"
-        android:layout_marginTop="16dp"
         android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
@@ -70,7 +67,10 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:background="@drawable/ic_toggle"
         android:textOn=""
-        android:textOff=""/>
+        android:textOff=""
+        app:layout_constraintHorizontal_bias="0.501"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/modeToggleButtonMain" />
 
     <ToggleButton
         android:id="@+id/modeToggleButtonMain"
@@ -87,9 +87,9 @@
         android:textColor="@color/orange"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/musicToggleButtonMain"
-        android:layout_marginTop="16dp"
-        app:layout_constraintHorizontal_bias="0.502" />
+        app:layout_constraintHorizontal_bias="0.503"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/changeDurationSeekBarMain" />
 
     <TextView
         android:id="@+id/durationTextViewMain"
@@ -104,8 +104,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintTop_creator="1"
-        android:layout_marginTop="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/modeToggleButtonMain" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp" />
 
     <SeekBar
         android:id="@+id/changeDurationSeekBarMain"
@@ -125,7 +125,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         app:layout_constraintHorizontal_bias="0.0"
-        android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@+id/modeToggleButtonMain" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="32dp" />
 
 </android.support.constraint.ConstraintLayout>
