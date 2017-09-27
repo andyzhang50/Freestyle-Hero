@@ -7,6 +7,6 @@ Freestyle Hero is an Android app on which you can let your freestyle rap skills 
 Target SDK Version: 26
 Min SDK Version: 15
 
-![mainactivity](https://user-images.githubusercontent.com/20190194/30508996-68c3e1ce-9a72-11e7-9fbc-2980cd2b3f3a.png)
-![screenslideactivity](https://user-images.githubusercontent.com/20190194/30508993-64a38d2e-9a72-11e7-9007-102ae7734107.png)
+![main](https://user-images.githubusercontent.com/20190194/30912316-1204c538-a35a-11e7-9eb9-a22850060cf3.png)
+![in_game](https://user-images.githubusercontent.com/20190194/30912320-14f964d8-a35a-11e7-9fe0-33e864e4661a.png)
 
