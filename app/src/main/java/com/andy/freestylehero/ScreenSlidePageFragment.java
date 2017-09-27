@@ -1,5 +1,6 @@
 package com.andy.freestylehero;
 
+import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.widget.TextViewCompat;
@@ -10,23 +11,29 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import java.util.Random;
 
+import com.andy.freestylehero.MainActivity.Difficulty;
+
 public class ScreenSlidePageFragment extends Fragment {
 
-    // argument keys for easyWords, hardWords, random, and isModeHard in the onCreateView method
+    // argument keys for easyWords, mediumWords, hardWords, random, and difficulty in the
+    // onCreateView method
     public static final String ARG_EASY_WORDS = "easy_words";
+    public static final String ARG_MEDIUM_WORDS = "medium_words";
     public static final String ARG_HARD_WORDS = "hard_words";
     public static final String ARG_RANDOM = "random";
-    public static final String ARG_IS_MODE_HARD = "is_mode_hard";
+    public static final String ARG_DIFFICULTY = "difficulty";
 
-    // create a new instance of ScreenSlidePageFragment with random, isModeHard, easyWords and
-    // hardWords as args.
-    public static ScreenSlidePageFragment newInstance(Random random, boolean isModeHard,
-                                                      String[] easyWords, String[] hardWords) {
+    // create a new instance of ScreenSlidePageFragment with random, difficulty, easyWords,
+    // mediumWords and hardWords as args.
+    public static ScreenSlidePageFragment newInstance(Random random, Difficulty difficulty,
+                                                      String[] easyWords, String[] mediumWords,
+                                                      String[] hardWords) {
         ScreenSlidePageFragment fragment = new ScreenSlidePageFragment();
         Bundle args = new Bundle();
         args.putSerializable(ARG_RANDOM, random);
-        args.putBoolean(ARG_IS_MODE_HARD, isModeHard);
+        args.putSerializable(ARG_DIFFICULTY, difficulty);
         args.putStringArray(ARG_EASY_WORDS, easyWords);
+        args.putStringArray(ARG_MEDIUM_WORDS, mediumWords);
         args.putStringArray(ARG_HARD_WORDS, hardWords);
         fragment.setArguments(args);
         return fragment;
@@ -52,18 +59,26 @@ public class ScreenSlidePageFragment extends Fragment {
 
         Bundle args = getArguments();
         String[] easyWords = args.getStringArray(ARG_EASY_WORDS);
+        String[] mediumWords = args.getStringArray(ARG_MEDIUM_WORDS);
         String[] hardWords = args.getStringArray(ARG_HARD_WORDS);
         Random random = (Random) args.getSerializable(ARG_RANDOM);
-        Boolean isModeHard = args.getBoolean(ARG_IS_MODE_HARD);
-        if (random == null || easyWords == null || hardWords == null)
+        Difficulty difficulty = (Difficulty) args.getSerializable(ARG_DIFFICULTY);
+        if (random == null || easyWords == null || mediumWords == null || hardWords == null
+                || difficulty == null)
             throw new NullPointerException("args not instantiated");
 
-        // if in hard mode, take a word from the hardWords string array 80% of the time, and from
-        // the easyWords string array 20% of the time. If in easy mode, take a word from easyWords.
-        if (isModeHard && random.nextInt(5) > 0) {
-            textView.setText(hardWords[random.nextInt(hardWords.length)]);
-        } else {
-            textView.setText(easyWords[random.nextInt(easyWords.length)]);
+        switch (difficulty) {
+            case EASY:
+                textView.setText(easyWords[random.nextInt(easyWords.length)]);
+                textView.setTextColor(getResources().getColor(R.color.orange));
+                break;
+            case MEDIUM:
+                textView.setText(mediumWords[random.nextInt(mediumWords.length)]);
+                textView.setTextColor(getResources().getColor(R.color.stronger_orange));
+                break;
+            case HARD:
+                textView.setText(hardWords[random.nextInt(hardWords.length)]);
+                textView.setTextColor(getResources().getColor(R.color.red));
         }
 
         return rootView;

@@ -70,26 +70,24 @@
         android:textOff=""
         app:layout_constraintHorizontal_bias="0.501"
         android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/modeToggleButtonMain" />
+        app:layout_constraintBottom_toTopOf="@+id/toggleDifficultyButtonMain" />
 
-    <ToggleButton
-        android:id="@+id/modeToggleButtonMain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textOff="@string/button_easy"
-        android:textOn="@string/button_hard"
-        android:textSize="60sp"
+    <com.andy.freestylehero.ToggleDifficultyButton
+        android:id="@+id/toggleDifficultyButtonMain"
+        android:layout_width="200dp"
+        android:layout_height="93dp"
         android:layout_marginLeft="0dp"
         android:layout_marginStart="0dp"
         android:layout_marginRight="0dp"
         android:layout_marginEnd="0dp"
-        android:background="@android:color/transparent"
-        android:textColor="@color/orange"
-        app:layout_constraintRight_toRightOf="parent"
+        android:src="@drawable/ic_mode_easy"
+        android:scaleType="fitCenter"
+        android:padding="0dp"
+        android:background="@null"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintRight_toRightOf="parent"
         android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/changeDurationSeekBarMain" />
+        app:layout_constraintBottom_toTopOf="@+id/changeDurationSeekBarMain"/>
 
     <TextView
         android:id="@+id/durationTextViewMain"

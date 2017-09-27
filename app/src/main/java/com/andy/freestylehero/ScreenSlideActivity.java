@@ -2,6 +2,7 @@ package com.andy.freestylehero;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -22,6 +23,8 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.andy.freestylehero.MainActivity.Difficulty;
+
 public class ScreenSlideActivity extends FragmentActivity {
 
     private static final int MILLISECONDS_IN_SECOND = 1000;
@@ -38,12 +41,12 @@ public class ScreenSlideActivity extends FragmentActivity {
     // each word on screen
     private MediaPlayer mMediaPlayer; // Media player for playing rap beat
     private ToggleButton mMusicToggleButton; // Button for toggling music on and off
+    private ToggleDifficultyButton mToggleDifficultyButton; // Button for toggling word difficulty
 
-    private static boolean sIsModeHard; // true if mode is hard, false if mode is easy
-    private static String[] sEasyWords; // array of relatively easy words from which the program
-    // will draw words at random
-    private static String[] sHardWords; // array of relatively hard words from which the program
-    // will draw words at random
+    private static Difficulty sDifficulty; // word difficulty
+    private static String[] sEasyWords; // array of relatively easy words
+    private static String[] sMediumWords; // array of medium level words
+    private static String[] sHardWords; // array of relatively hard words
     private static Random sRandom; // Random object for selecting words at random
 
     @Override
@@ -96,20 +99,21 @@ public class ScreenSlideActivity extends FragmentActivity {
         mMusicToggleButton = findViewById(R.id.musicToggleButton);
         mMusicToggleButton.setChecked(getIntent().getBooleanExtra(MainActivity.ARG_IS_MUSIC_ON, true));
 
-        // Button for toggling between easy and hard modes
-        ToggleButton modeToggleButton = findViewById(R.id.modeToggleButton);
-        modeToggleButton.setChecked(getIntent().getBooleanExtra(MainActivity.ARG_IS_MODE_HARD,
-                false));
-        modeToggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        mToggleDifficultyButton = findViewById(R.id.toggleDifficultyButton);
+        sDifficulty = (Difficulty) getIntent().getSerializableExtra(MainActivity.ARG_DIFFICULTY);
+        mToggleDifficultyButton.setDifficulty(sDifficulty);
+        mToggleDifficultyButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isModeHard) {
-                sIsModeHard = isModeHard;
+            public void onClick(View view) {
+                mToggleDifficultyButton.onClick();
+                sDifficulty = mToggleDifficultyButton.getDifficulty();
             }
-        });
-        modeToggleButton.setTypeface(MainActivity.getCustomFontTypeFace());
+        }) ;
 
-        sEasyWords = getResources().getStringArray(R.array.easy_words);
-        sHardWords = getResources().getStringArray(R.array.hard_words);
+        Resources res = getResources();
+        sEasyWords = res.getStringArray(R.array.easy_words);
+        sMediumWords = res.getStringArray(R.array.medium_words);
+        sHardWords = res.getStringArray(R.array.hard_words);
         sRandom = new Random();
     }
 
@@ -192,8 +196,8 @@ public class ScreenSlideActivity extends FragmentActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return ScreenSlidePageFragment.newInstance(sRandom, sIsModeHard,
-                    sEasyWords, sHardWords);
+            return ScreenSlidePageFragment.newInstance(sRandom, sDifficulty,
+                    sEasyWords, sMediumWords, sHardWords);
         }
 
         @Override

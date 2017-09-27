@@ -89,28 +89,26 @@
         android:textOn=""
         android:textOff=""/>
 
-    <ToggleButton
-        android:id="@+id/modeToggleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <com.andy.freestylehero.ToggleDifficultyButton
+        android:id="@+id/toggleDifficultyButton"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
         android:layout_marginEnd="0dp"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
-        android:layout_marginTop="24dp"
-        android:background="@android:color/transparent"
-        android:textAlignment="center"
-        android:textColor="@color/orange"
-        android:textOff="@string/button_easy"
-        android:textOn="@string/button_hard"
-        android:textSize="60sp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_mode_easy"
+        android:scaleType="fitCenter"
+        android:padding="0dp"
+        android:background="@null"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/exitButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:layout_marginRight="32dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"

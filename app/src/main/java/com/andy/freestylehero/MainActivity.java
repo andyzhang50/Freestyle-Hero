@@ -19,12 +19,16 @@ public class MainActivity extends AppCompatActivity {
 
     // argument keys for mDuration, mIsModeHard and mIsMusicOn
     public static final String ARG_DURATION = "duration";
-    public static final String ARG_IS_MODE_HARD = "is_mode_hard";
     public static final String ARG_IS_MUSIC_ON = "is_music_on";
+    public static final String ARG_DIFFICULTY = "difficulty";
+
+    enum Difficulty {
+        EASY, MEDIUM, HARD
+    }
 
     private int mDuration; // Duration of each word's appearance on screen
-    private boolean mIsModeHard; // true if mode is hard, false if mode is easy
-    private boolean mIsMusicOn; // true if music turned on, false if turned off
+    private boolean mIsMusicOn; // True if music turned on, false if turned off
+    private Difficulty mDifficulty; // Word difficulty
     private static Typeface sCustomFontTypeFace; // Typeface variable for the main font
 
     @Override
@@ -33,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mDuration = DEFAULT_DURATION;
-        mIsModeHard = false;
         mIsMusicOn = true;
+        mDifficulty = Difficulty.EASY;
 
         sCustomFontTypeFace = Typeface.createFromAsset(getAssets(), CUSTOM_FONT_PATH);
 
@@ -55,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, ScreenSlideActivity.class);
                 intent.putExtra(ARG_DURATION, mDuration);
                 intent.putExtra(ARG_IS_MUSIC_ON, mIsMusicOn);
-                intent.putExtra(ARG_IS_MODE_HARD, mIsModeHard);
+                intent.putExtra(ARG_DIFFICULTY, mDifficulty);
                 startActivity(intent);
             }
         });
@@ -69,15 +73,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Easy/hard mode toggle button
-        ToggleButton modeToggleButton = findViewById(R.id.modeToggleButtonMain);
-        modeToggleButton.setTypeface(sCustomFontTypeFace);
-        modeToggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        // Word difficulty toggle button
+        final ToggleDifficultyButton toggleDifficultyButton =
+                findViewById(R.id.toggleDifficultyButtonMain);
+        toggleDifficultyButton.setDifficulty(mDifficulty);
+        toggleDifficultyButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isModeHard) {
-                mIsModeHard = isModeHard;
+            public void onClick(View view) {
+                toggleDifficultyButton.onClick();
+                mDifficulty = toggleDifficultyButton.getDifficulty();
             }
-        });
+        }) ;
 
         // Text view displaying the currently set duration of each word's appearance on screen
         final TextView durationTextView = findViewById(R.id.durationTextViewMain);
